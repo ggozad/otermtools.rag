@@ -7,11 +7,14 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "fastapi[standard]>=0.115.2",
+    "ollama>=0.3.3",
     "pgvector>=0.3.5",
     "psycopg2>=2.9.9",
     "pydantic>=2.9.2",
     "python-dotenv>=1.0.1",
     "sqlmodel>=0.0.22",
+    "tiktoken>=0.8.0",
+    "trafilatura>=1.12.2",
 ]
 license = { text = "MIT"}
 
@@ -21,6 +24,7 @@ build-backend = "hatchling.build"
 
 [tool.uv]
 dev-dependencies = [
+    "datasets>=3.0.1",
     "pytest-asyncio>=0.24.0",
     "pytest>=8.3.3",
     "ruff>=0.6.9",

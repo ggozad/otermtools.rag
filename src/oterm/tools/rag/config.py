@@ -19,7 +19,7 @@ class AppConfig(BaseModel):
 
     OLLAMA_BASE_URL: str
 
-    LLM_MODEL: str = "llama3.1"
+    LLM_MODEL: str = "llama3.2"
     EMBEDDING_MODEL: str = "mxbai-embed-large"
     EMBEDDING_VECTOR_DIM: int = 1024
     CHUNK_SIZE: int = 256
