@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import pytest
 from datasets import Dataset, DatasetDict, load_dataset
 from sqlmodel import Session, select
@@ -41,3 +43,8 @@ def qa_corpus_html_documents(qa_corpus) -> list[str]:
     for i in range(100):
         documents.append(qa_corpus[i])
     return [document["document"]["html"] for document in documents]
+
+
+@pytest.fixture(scope="session")
+def test_files() -> Path:
+    return Path(__file__).parent / "data"

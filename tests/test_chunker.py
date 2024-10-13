@@ -1,13 +1,13 @@
 import pytest
 
 from oterm.tools.rag.chunker import Chunker
-from oterm.tools.rag.converters.html import from_html
+from oterm.tools.rag.reader import FileReader
 
 
 @pytest.mark.asyncio
 async def test_chunker(qa_corpus_html_documents: list[str]):
     html = qa_corpus_html_documents[0]  # type: ignore
-    text = from_html(html)
+    text = FileReader().from_html(html)
     chunks = await Chunker().chunk(text)
 
     # Ensure that the text is split into multiple chunks

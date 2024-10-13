@@ -1,9 +1,27 @@
-import pytest
+from pathlib import Path
 
-from oterm.tools.rag.converters.html import from_html
+from oterm.tools.rag.reader import FileReader
 
 
-@pytest.mark.asyncio
+async def test_docx_to_text(test_files: Path):
+
+    text = FileReader().read(test_files / "sample.docx")
+    assert text == "Hello world."
+
+
+async def test_pdf_to_text(test_files: Path):
+
+    text = FileReader().read(test_files / "sample.pdf")
+    print(text)
+    assert text == " \n Hello world. "
+
+
+async def test_text_to_text(test_files: Path):
+
+    text = FileReader().read(test_files / "sample.txt")
+    assert text == "Hello world."
+
+
 async def test_html_to_text():
 
     html_text = """
@@ -36,7 +54,7 @@ async def test_html_to_text():
         </body>
     </html>"""
 
-    text = from_html(html_text)
+    text = FileReader.from_html(html_text)
     assert (
         text
         == "Test\nTest paragraph\nitem 1\nitem 2\nexample\nHeader 1\nHeader 2\nRow 1, Column 1\nRow 1, Column 2\nRow 2, Column 1\nRow 2, Column 2"

@@ -1,7 +1,7 @@
 import pytest
 from sqlmodel import Session
 
-from oterm.tools.rag.converters.html import from_html
+from oterm.tools.rag.reader import FileReader
 from oterm.tools.rag.store.engine import engine
 from oterm.tools.rag.store.models.document import Document
 
@@ -10,7 +10,7 @@ from oterm.tools.rag.store.models.document import Document
 async def test_document_chunking(setup_db, qa_corpus_html_documents):
     with Session(engine) as session:
         html = qa_corpus_html_documents[0]
-        text = from_html(html)
+        text = FileReader().from_html(html)
         document = Document(
             text=text, url="", mimetype="text/plain", meta={"source": "rag_test"}
         )
