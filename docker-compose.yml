@@ -1,0 +1,24 @@
+services:      
+  psql:
+    container_name: oterm.tools.rag.psql
+    image:  pgvector/pgvector:pg17
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "psql", "-h", "localhost", "-d", "haiku"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "5432:5432"
+    env_file:
+      - config/psql/postgres.env
+      - secrets/psql.env
+    volumes:
+      - type: bind
+        source: ./config/psql
+        target: /docker-entrypoint-initdb.d
+      - ./volumes/pgsql:/var/lib/postgresql/data
+
+networks:
+  default:
+      name: haiku
+      
