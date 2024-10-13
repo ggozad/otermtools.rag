@@ -1,9 +1,26 @@
-services:      
+services:
+
+  oterm.tools.rag:
+    container_name: oterm.tools.rag
+    build:
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8000:8000"
+    env_file:
+      - config/ollama.env
+      - config/psql/postgres.env
+      - secrets/psql.env
+    volumes:
+      - ./src:/app/src
+      - ./tests:/app/tests
+    depends_on:
+      - psql
+      
   psql:
     container_name: oterm.tools.rag.psql
     image:  pgvector/pgvector:pg17
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "psql", "-h", "localhost", "-d", "haiku"]
+      test: ["CMD", "pg_isready", "-U", "psql", "-h", "localhost", "-d", "rag"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -20,5 +37,5 @@ services:
 
 networks:
   default:
-      name: haiku
+      name: oterm.tools.rag
       

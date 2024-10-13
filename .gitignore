@@ -1,2 +1,10 @@
 secrets/
 volumes/
+
+__pycache__/
+.cache/
+.venv/
+.env
+.env.local
+.DS_Store
+dist/

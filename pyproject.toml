@@ -1,0 +1,45 @@
+[project]
+name = "oterm.tools.rag"
+version = "0.1.0"
+description = "Retrieval Augmented Generation tool for oterm/Ollama"
+authors = [{ name = "Yiorgis Gozadinos", email = "ggozadinos@gmail.com" }]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi[standard]>=0.115.2",
+]
+license = { text = "MIT"}
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+dev-dependencies = [
+    "pytest-asyncio>=0.24.0",
+    "pytest>=8.3.3",
+    "ruff>=0.6.9",
+]
+[tool.hatch.build.targets.wheel]
+packages = ["src/oterm"]
+
+[tool.ruff]
+lint.per-file-ignores = { "__init__.py" = ["F401"] }
+exclude = [
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".mypy_cache",
+    ".ruff_cache",
+    ".venv",
+    "__pypackages__",
+    ".cache",
+    "_build",
+    "build",
+    "dist",
+    "venv",
+]
+
+[tool.pytest.ini_options]
+asyncio_default_fixture_loop_scope = "session"
+asyncio_mode = "auto"
