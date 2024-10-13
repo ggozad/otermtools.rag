@@ -11,7 +11,7 @@ class AppConfig(BaseModel):
 
     COLLECTION_NAME: str = "oterm"
 
-    POSTGRES_DB: str = "rag"
+    POSTGRES_DB: str = "oterm.rag"
     POSTGRES_USER: str
     POSTGRES_PASSWORD: str
     POSTGRES_HOST: str
@@ -24,6 +24,8 @@ class AppConfig(BaseModel):
     EMBEDDING_VECTOR_DIM: int = 1024
     CHUNK_SIZE: int = 256
     CHUNK_OVERLAP: int = 32
+
+    DOCUMENT_DIRECTORY: str = "/documents"
 
 
 # Expose Config object for app to import

@@ -17,6 +17,7 @@ dependencies = [
     "sqlmodel>=0.0.22",
     "tiktoken>=0.8.0",
     "trafilatura>=1.12.2",
+    "watchfiles>=0.24.0",
 ]
 license = { text = "MIT"}
 

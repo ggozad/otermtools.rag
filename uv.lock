@@ -1018,6 +1018,7 @@ dependencies = [
     { name = "sqlmodel" },
     { name = "tiktoken" },
     { name = "trafilatura" },
+    { name = "watchfiles" },
 ]
 
 [package.dev-dependencies]
@@ -1041,6 +1042,7 @@ requires-dist = [
     { name = "sqlmodel", specifier = ">=0.0.22" },
     { name = "tiktoken", specifier = ">=0.8.0" },
     { name = "trafilatura", specifier = ">=1.12.2" },
+    { name = "watchfiles", specifier = ">=0.24.0" },
 ]
 
 [package.metadata.requires-dev]

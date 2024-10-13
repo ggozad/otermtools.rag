@@ -13,6 +13,7 @@ services:
     volumes:
       - ./src:/app/src
       - ./tests:/app/tests
+      - ./volumes/documents:/documents
     depends_on:
       - psql
       
@@ -20,7 +21,7 @@ services:
     container_name: oterm.tools.rag.psql
     image:  pgvector/pgvector:pg17
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "psql", "-h", "localhost", "-d", "rag"]
+      test: ["CMD", "pg_isready", "-U", "psql", "-h", "localhost", "-d", "oterm.rag"]
       interval: 10s
       timeout: 5s
       retries: 5
