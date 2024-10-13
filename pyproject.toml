@@ -7,6 +7,11 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "fastapi[standard]>=0.115.2",
+    "pgvector>=0.3.5",
+    "psycopg2>=2.9.9",
+    "pydantic>=2.9.2",
+    "python-dotenv>=1.0.1",
+    "sqlmodel>=0.0.22",
 ]
 license = { text = "MIT"}
 
