@@ -12,7 +12,7 @@ async def test_document_chunking(setup_db, qa_corpus_html_documents):
         html = qa_corpus_html_documents[0]
         text = FileReader().from_html(html)
         document = Document(
-            text=text, url="", mimetype="text/plain", meta={"source": "rag_test"}
+            text=text, uri="", mimetype="text/plain", meta={"source": "rag_test"}
         )
 
         chunks = await document.chunk(meta={"source": "rag_test"})

@@ -16,7 +16,6 @@ async def lifespan(app: FastAPI):
     SQLModel.metadata.create_all(engine)
     fw = FileWatcher([Config.DOCUMENT_DIRECTORY])
     monitor = asyncio.create_task(fw.observe())
-
     yield
     monitor.cancel()
 

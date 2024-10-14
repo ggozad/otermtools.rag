@@ -21,7 +21,7 @@ class Document(SQLModel, table=True):
     )
     text: str = Field(nullable=False)
     mimetype: str = Field(nullable=False)
-    url: str | None = Field(nullable=True)
+    uri: str | None = Field(nullable=True)
     meta: dict[str, Any] = Field(default_factory=dict, sa_column=Column(JSONB))
 
     created_at: datetime = Field(default_factory=datetime.now)
@@ -32,7 +32,6 @@ class Document(SQLModel, table=True):
         # If the document has already been chunked do nothing
         if self.chunks:
             return []
-
         chunker = Chunker()
         embedder = Embedder()
         chunks = await chunker.chunk(self.text)
