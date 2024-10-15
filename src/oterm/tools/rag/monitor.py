@@ -37,8 +37,10 @@ class FileWatcher:
 
     async def handler(self, changes: Set[tuple[Change, str]]):
         for change, path in changes:
-            logger.info(f'Observed "{change.name}" on {path}')
-            await self._upsert_document(Path(path))
+            if change == Change.added or change == Change.modified:
+                await self._upsert_document(Path(path))
+            elif change == Change.deleted:
+                await self._delete_document(Path(path))
 
     async def refresh(self, paths: list[str | Path] | None = None):
         if paths is None:
@@ -47,6 +49,16 @@ class FileWatcher:
             for f in Path(path).rglob("**/*"):
                 if f.is_file():
                     await self._upsert_document(f)
+
+    async def _delete_document(self, file: Path):
+        with Session(engine) as session:
+            document = session.exec(
+                select(Document).where(Document.uri == file.absolute().as_uri())
+            ).first()
+            if document:
+                logger.info(f"Deleting document for {file}")
+                session.delete(document)
+                session.commit()
 
     async def _upsert_document(self, file: Path) -> Document:
         with Session(engine) as session:
