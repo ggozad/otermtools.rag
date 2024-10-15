@@ -1,3 +1,4 @@
+import hashlib
 from mimetypes import guess_type
 from pathlib import Path
 from typing import Optional, Set
@@ -53,15 +54,24 @@ class FileWatcher:
             document = session.exec(
                 select(Document).where(Document.uri == file.absolute().as_uri())
             ).first()
-
+            md5 = hashlib.md5(file.read_bytes()).hexdigest()
             if not document:
+                logger.info(f"Creating document for {file}")
                 document = Document(
                     text=FileReader().read(file),
                     mimetype=mimetype,
                     uri=file.absolute().as_uri(),
+                    meta={"md5": md5},
                 )
+            elif document.meta.get("md5") == md5:
+                logger.info(f"Skipping {file}")
+                return document
             else:
+                logger.info(f"Updating document for {file}")
                 document.text = FileReader().read(file)
+                meta = document.meta.copy()
+                meta["md5"] = md5
+                document.meta = meta
 
             document.chunks = []
             chunks = await document.chunk()
