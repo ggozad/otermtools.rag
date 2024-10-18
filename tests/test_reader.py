@@ -3,26 +3,26 @@ from pathlib import Path
 from oterm.tools.rag.reader import FileReader
 
 
-async def test_docx_to_text(test_files: Path):
+def test_docx_to_text(test_files: Path):
 
     text = FileReader().read(test_files / "sample.docx")
     assert text == "Hello world."
 
 
-async def test_pdf_to_text(test_files: Path):
+def test_pdf_to_text(test_files: Path):
 
     text = FileReader().read(test_files / "sample.pdf")
     print(text)
     assert text == " \n Hello world. "
 
 
-async def test_text_to_text(test_files: Path):
+def test_text_to_text(test_files: Path):
 
     text = FileReader().read(test_files / "sample.txt")
     assert text == "Hello world."
 
 
-async def test_html_to_text():
+def test_html_to_text():
 
     html_text = """
     <html>
