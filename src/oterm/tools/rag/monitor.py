@@ -47,7 +47,7 @@ class FileWatcher:
             paths = self.paths
         for path in paths:
             for f in Path(path).rglob("**/*"):
-                if f.is_file():
+                if f.is_file() and f.suffix in FileReader.extensions:
                     await self._upsert_document(f)
 
     async def _delete_document(self, file: Path):
@@ -60,35 +60,47 @@ class FileWatcher:
                 session.delete(document)
                 session.commit()
 
-    async def _upsert_document(self, file: Path) -> Document:
+    async def _upsert_document(self, file: Path) -> Document | None:
         with Session(engine) as session:
-            mimetype = guess_type(file.name)[0] or "unknown"
-            document = session.exec(
-                select(Document).where(Document.uri == file.absolute().as_uri())
-            ).first()
-            md5 = hashlib.md5(file.read_bytes()).hexdigest()
-            if not document:
-                logger.info(f"Creating document for {file}")
-                document = Document(
-                    text=FileReader().read(file),
-                    mimetype=mimetype,
-                    uri=file.absolute().as_uri(),
-                    meta={"md5": md5},
-                )
-            elif document.meta.get("md5") == md5:
-                logger.info(f"Skipping {file}")
-                return document
-            else:
-                logger.info(f"Updating document for {file}")
-                document.text = FileReader().read(file)
-                meta = document.meta.copy()
-                meta["md5"] = md5
-                document.meta = meta
+            try:
+                mimetype = guess_type(file.name)[0] or "unknown"
+                document = session.exec(
+                    select(Document).where(Document.uri == file.absolute().as_uri())
+                ).first()
+                md5 = hashlib.md5(file.read_bytes()).hexdigest()
+                if not document:
+                    logger.info(f"Creating document for {file}")
+                    text = FileReader().read(file)
+                    if not text:
+                        return
+                    document = Document(
+                        text=text,
+                        mimetype=mimetype,
+                        uri=file.absolute().as_uri(),
+                        meta={"md5": md5},
+                    )
+                elif document.meta.get("md5") == md5:
+                    logger.info(f"Skipping {file}")
+                    return document
+                else:
+                    logger.info(f"Updating document for {file}")
+                    text = FileReader().read(file)
+                    if not text:
+                        session.delete(document)
+                        return
 
-            document.chunks = []
-            chunks = await document.chunk()
-            document.chunks = chunks
-            session.add(document)
-            session.commit()
-            session.refresh(document)
-            return document
+                    document.text = text
+                    meta = document.meta.copy()
+                    meta["md5"] = md5
+                    document.meta = meta
+
+                document.chunks = []
+                chunks = await document.chunk()
+                document.chunks = chunks
+                session.add(document)
+                session.commit()
+                session.refresh(document)
+                return document
+            except Exception as e:
+                logger.error(f"Error processing {file}: {e}")
+                raise e
