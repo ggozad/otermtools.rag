@@ -28,7 +28,7 @@ class Document(SQLModel, table=True):
     updated_at: datetime = Field(default_factory=datetime.now)
     chunks: list["Chunk"] = Relationship(back_populates="document", cascade_delete=True)
 
-    async def chunk(self, meta={}) -> list["Chunk"]:
+    async def chunk(self, meta={}) -> list[Chunk]:
         # If the document has already been chunked do nothing
         if self.chunks:
             return []

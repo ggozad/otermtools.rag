@@ -1,7 +1,9 @@
 from typing import TYPE_CHECKING, Any
 from uuid import UUID, uuid4
 
+import numpy
 from pgvector.sqlalchemy import Vector
+from pydantic import field_serializer
 from sqlalchemy import Column, text
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlmodel import Field, Relationship, SQLModel
@@ -28,3 +30,7 @@ class Chunk(SQLModel, table=True):
     embedding: list[float] = Field(
         sa_column=Column(Vector(Config.EMBEDDING_VECTOR_DIM))
     )
+
+    @field_serializer("embedding")
+    def serialize_embedding(self, embedding: numpy.ndarray) -> list[float]:
+        return embedding.tolist()

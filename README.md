@@ -1,13 +1,20 @@
 # oterm.tools.rag
 
-`oterm.tools.rag` is an [Ollama](https://github.com/ollama/ollama) tool for adding RAG (Retrieval-Augmented Generation) capabilities to the terminal-based chat client [oterm](https://github.com/ggozad/oterm).
+`oterm.tools.rag` is an [Ollama](https://github.com/ollama/ollama) tool for adding RAG (Retrieval-Augmented Generation) capabilities to the terminal-based Ollama client [oterm](https://github.com/ggozad/oterm).
 
-THIS IS A WORK IN PROGRESS.
+**THIS IS A WORK IN PROGRESS.**
 
 ## Installation
 
-Start by building and running the the docker containers necessary.
-First, set a password for the postgres database in `secrets/psql.env`:
+# Using Docker
+Start by building and running the the docker containers necessary:
+Clone the repository and navigate to the root of the repository:
+```bash
+git clone https://github.com/ggozad/oterm.tools.rag.git
+cd oterm.tools.rag
+```
+
+Set a password for the postgres database in `secrets/psql.env`:
 ```bash
 POSTGRES_PASSWORD = psql
 ```
@@ -18,4 +25,8 @@ Then, run the docker compose file in the root of the repository:
 docker-compose up -d 
 ```
 
+This will start postgres with the `pgvector` extension as well as the store API.
+In addition it will monitor any files you have in the mounted `/volumes/documents` directory and index them in the database.
+
+# Using the store API
 
