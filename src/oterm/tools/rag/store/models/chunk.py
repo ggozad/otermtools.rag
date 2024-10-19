@@ -14,7 +14,14 @@ if TYPE_CHECKING:
     from oterm.tools.rag.store.models.document import Document
 
 
-class Chunk(SQLModel, table=True):
+class ChunkBase(SQLModel):
+    document_id: UUID = Field(foreign_key="document.id", nullable=False)
+
+    text: str = Field(nullable=False)
+    meta: dict[str, Any] = Field(default_factory=dict, sa_column=Column(JSONB))
+
+
+class Chunk(ChunkBase, table=True):
     id: UUID = Field(
         default_factory=uuid4,
         primary_key=True,
@@ -22,11 +29,8 @@ class Chunk(SQLModel, table=True):
         nullable=False,
         sa_column_kwargs={"server_default": text("gen_random_uuid()"), "unique": True},
     )
-    document_id: UUID = Field(foreign_key="document.id", nullable=False)
-    document: "Document" = Relationship(back_populates="chunks")
 
-    text: str = Field(nullable=False)
-    meta: dict[str, Any] = Field(default_factory=dict, sa_column=Column(JSONB))
+    document: "Document" = Relationship(back_populates="chunks")
     embedding: list[float] = Field(
         sa_column=Column(Vector(Config.EMBEDDING_VECTOR_DIM))
     )

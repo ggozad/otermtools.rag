@@ -4,6 +4,7 @@ from uuid import UUID
 from fastapi import APIRouter, HTTPException, Query
 from sqlmodel import Session, select
 
+from oterm.tools.rag.api.responses import ChunkResponse, DocumentResponse
 from oterm.tools.rag.store.engine import engine
 from oterm.tools.rag.store.models.chunk import Chunk
 from oterm.tools.rag.store.models.document import Document
@@ -11,7 +12,7 @@ from oterm.tools.rag.store.models.document import Document
 router = APIRouter(prefix="/documents", tags=["documents"])
 
 
-@router.get("")
+@router.get("", response_model=Sequence[DocumentResponse])
 def documents(
     offset: int = 0, limit: int = Query(default=100, le=100)
 ) -> Sequence[Document]:
@@ -19,7 +20,7 @@ def documents(
         return session.exec(select(Document).offset(offset).limit(limit)).all()
 
 
-@router.get("/{document_id}")
+@router.get("/{document_id}", response_model=DocumentResponse)
 def document(document_id: UUID) -> Document | None:
     with Session(engine) as session:
         return session.get(Document, document_id)
@@ -35,7 +36,7 @@ def delete_document(document_id: UUID):
         session.commit()
 
 
-@router.get("/{document_id}/chunks")
+@router.get("/{document_id}/chunks", response_model=Sequence[ChunkResponse])
 def document_chunks(document_id: UUID) -> Sequence[Chunk]:
     with Session(engine) as session:
         chunks = session.exec(

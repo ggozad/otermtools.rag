@@ -11,14 +11,7 @@ from oterm.tools.rag.embedder import Embedder
 from oterm.tools.rag.store.models.chunk import Chunk
 
 
-class Document(SQLModel, table=True):
-    id: UUID = Field(
-        default_factory=uuid4,
-        primary_key=True,
-        index=True,
-        nullable=False,
-        sa_column_kwargs={"server_default": text("gen_random_uuid()"), "unique": True},
-    )
+class DocumentBase(SQLModel):
     text: str = Field(nullable=False)
     mimetype: str = Field(nullable=False)
     uri: str | None = Field(nullable=True)
@@ -26,7 +19,18 @@ class Document(SQLModel, table=True):
 
     created_at: datetime = Field(default_factory=datetime.now)
     updated_at: datetime = Field(default_factory=datetime.now)
-    chunks: list["Chunk"] = Relationship(back_populates="document", cascade_delete=True)
+
+
+class Document(DocumentBase, table=True):
+    id: UUID = Field(
+        default_factory=uuid4,
+        primary_key=True,
+        index=True,
+        nullable=False,
+        sa_column_kwargs={"server_default": text("gen_random_uuid()"), "unique": True},
+    )
+
+    chunks: list[Chunk] = Relationship(back_populates="document", cascade_delete=True)
 
     async def chunk(self, meta={}) -> list[Chunk]:
         # If the document has already been chunked do nothing
