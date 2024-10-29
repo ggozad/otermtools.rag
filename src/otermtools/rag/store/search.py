@@ -1,10 +1,9 @@
 from typing import Sequence
 
+from otermtools.rag.embedder import Embedder
+from otermtools.rag.store.engine import engine
+from otermtools.rag.store.models.chunk import Chunk
 from sqlmodel import Session, select
-
-from oterm.tools.rag.embedder import Embedder
-from oterm.tools.rag.store.engine import engine
-from oterm.tools.rag.store.models.chunk import Chunk
 
 
 async def search(query: str, top_k: int = 10) -> Sequence[Chunk]:

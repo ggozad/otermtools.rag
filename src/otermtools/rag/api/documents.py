@@ -2,12 +2,11 @@ from typing import Sequence
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, Query
+from otermtools.rag.api.responses import ChunkResponse, DocumentResponse
+from otermtools.rag.store.engine import engine
+from otermtools.rag.store.models.chunk import Chunk
+from otermtools.rag.store.models.document import Document
 from sqlmodel import Session, select
-
-from oterm.tools.rag.api.responses import ChunkResponse, DocumentResponse
-from oterm.tools.rag.store.engine import engine
-from oterm.tools.rag.store.models.chunk import Chunk
-from oterm.tools.rag.store.models.document import Document
 
 router = APIRouter(prefix="/documents", tags=["documents"])
 

@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from oterm.tools.rag.reader import FileReader
+from otermtools.rag.reader import FileReader
 
 
 def test_docx_to_text(test_files: Path):

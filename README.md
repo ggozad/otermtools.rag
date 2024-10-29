@@ -1,6 +1,6 @@
-# oterm.tools.rag
+# otermtools.rag
 
-`oterm.tools.rag` is an [Ollama](https://github.com/ollama/ollama) tool for adding RAG (Retrieval-Augmented Generation) capabilities to the terminal-based Ollama client [oterm](https://github.com/ggozad/oterm).
+`otermtools.rag` is an [Ollama](https://github.com/ollama/ollama) tool for adding RAG (Retrieval-Augmented Generation) capabilities to the terminal-based Ollama client [oterm](https://github.com/ggozad/oterm).
 
 **THIS IS A WORK IN PROGRESS.**
 
@@ -10,8 +10,8 @@
 Start by building and running the the docker containers necessary:
 Clone the repository and navigate to the root of the repository:
 ```bash
-git clone https://github.com/ggozad/oterm.tools.rag.git
-cd oterm.tools.rag
+git clone https://github.com/ggozad/otermtools.rag.git
+cd otermtools.rag
 ```
 
 Set a password for the postgres database in `secrets/psql.env`:

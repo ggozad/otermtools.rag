@@ -1,8 +1,7 @@
 import numpy as np
 import pytest
-
-from oterm.tools.rag.config import Config
-from oterm.tools.rag.embedder import Embedder
+from otermtools.rag.config import Config
+from otermtools.rag.embedder import Embedder
 
 
 @pytest.mark.asyncio

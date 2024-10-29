@@ -2,16 +2,15 @@ from typing import TYPE_CHECKING, Any
 from uuid import UUID, uuid4
 
 import numpy
+from otermtools.rag.config import Config
 from pgvector.sqlalchemy import Vector
 from pydantic import field_serializer
 from sqlalchemy import Column, text
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlmodel import Field, Relationship, SQLModel
 
-from oterm.tools.rag.config import Config
-
 if TYPE_CHECKING:
-    from oterm.tools.rag.store.models.document import Document
+    from otermtools.rag.store.models.document import Document
 
 
 class ChunkBase(SQLModel):

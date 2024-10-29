@@ -2,13 +2,12 @@ from datetime import datetime
 from typing import Any
 from uuid import UUID, uuid4
 
+from otermtools.rag.chunker import Chunker
+from otermtools.rag.embedder import Embedder
+from otermtools.rag.store.models.chunk import Chunk
 from sqlalchemy import Column, text
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlmodel import Field, Relationship, SQLModel
-
-from oterm.tools.rag.chunker import Chunker
-from oterm.tools.rag.embedder import Embedder
-from oterm.tools.rag.store.models.chunk import Chunk
 
 
 class DocumentBase(SQLModel):

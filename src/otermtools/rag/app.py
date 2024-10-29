@@ -3,12 +3,11 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from otermtools.rag.api import router as api_router
+from otermtools.rag.config import Config
+from otermtools.rag.monitor import FileWatcher
+from otermtools.rag.store.engine import engine
 from sqlmodel import SQLModel
-
-from oterm.tools.rag.api import router as api_router
-from oterm.tools.rag.config import Config
-from oterm.tools.rag.monitor import FileWatcher
-from oterm.tools.rag.store.engine import engine
 
 
 @asynccontextmanager

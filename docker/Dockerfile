@@ -27,4 +27,4 @@ RUN uv sync
 ENV VIRTUAL_ENV=/app/.venv
 # Place executables in the environment at the front of the path
 ENV PATH="/app/.venv/bin:$PATH"
-CMD ["fastapi", "dev", "src/oterm/tools/rag/app.py", "--host", "0.0.0.0"]
+CMD ["fastapi", "dev", "src/otermtools/rag/app.py", "--host", "0.0.0.0"]

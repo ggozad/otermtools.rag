@@ -1,7 +1,7 @@
 from uuid import UUID
 
-from oterm.tools.rag.store.models.chunk import ChunkBase
-from oterm.tools.rag.store.models.document import DocumentBase
+from otermtools.rag.store.models.chunk import ChunkBase
+from otermtools.rag.store.models.document import DocumentBase
 
 
 class DocumentResponse(DocumentBase):

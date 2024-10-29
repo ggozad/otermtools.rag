@@ -1,12 +1,11 @@
 from typing import Any
 from uuid import UUID, uuid4
 
+from otermtools.rag.config import Config
 from pgvector.sqlalchemy import Vector
 from sqlalchemy import Column, text
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlmodel import Field, SQLModel
-
-from oterm.tools.rag.config import Config
 
 
 class Embedding(SQLModel, table=True):

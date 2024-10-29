@@ -1,7 +1,6 @@
 import pytest
-
-from oterm.tools.rag.chunker import Chunker
-from oterm.tools.rag.reader import FileReader
+from otermtools.rag.chunker import Chunker
+from otermtools.rag.reader import FileReader
 
 
 @pytest.mark.asyncio

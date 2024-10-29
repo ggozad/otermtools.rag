@@ -11,7 +11,7 @@ class AppConfig(BaseModel):
 
     COLLECTION_NAME: str = "oterm"
 
-    POSTGRES_DB: str = "oterm.rag"
+    POSTGRES_DB: str = "otermtools.rag"
     POSTGRES_USER: str
     POSTGRES_PASSWORD: str
     POSTGRES_HOST: str

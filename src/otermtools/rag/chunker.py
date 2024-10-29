@@ -1,8 +1,7 @@
 from typing import ClassVar
 
 import tiktoken
-
-from oterm.tools.rag.config import Config
+from otermtools.rag.config import Config
 
 
 class Chunker(object):

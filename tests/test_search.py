@@ -1,10 +1,9 @@
 import pytest
+from otermtools.rag.reader import FileReader
+from otermtools.rag.store.engine import engine
+from otermtools.rag.store.models.document import Document
+from otermtools.rag.store.search import search
 from sqlmodel import Session
-
-from oterm.tools.rag.reader import FileReader
-from oterm.tools.rag.store.engine import engine
-from oterm.tools.rag.store.models.document import Document
-from oterm.tools.rag.store.search import search
 
 
 @pytest.mark.asyncio

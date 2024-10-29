@@ -1,5 +1,5 @@
 [project]
-name = "oterm.tools.rag"
+name = "otermtools.rag"
 version = "0.1.0"
 description = "Retrieval Augmented Generation tool for oterm/Ollama"
 authors = [{ name = "Yiorgis Gozadinos", email = "ggozadinos@gmail.com" }]
@@ -33,7 +33,7 @@ dev-dependencies = [
     "ruff>=0.6.9",
 ]
 [tool.hatch.build.targets.wheel]
-packages = ["src/oterm"]
+packages = ["src/otermtools"]
 
 [tool.ruff]
 lint.per-file-ignores = { "__init__.py" = ["F401"] }

@@ -1,8 +1,7 @@
 import functools
 
 from ollama import AsyncClient
-
-from oterm.tools.rag.config import Config
+from otermtools.rag.config import Config
 
 
 class Embedder(object):

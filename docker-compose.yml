@@ -1,7 +1,7 @@
 services:
 
-  oterm.tools.rag:
-    container_name: oterm.tools.rag
+  otermtools.rag:
+    container_name: otermtools.rag
     build:
       dockerfile: docker/Dockerfile
     ports:
@@ -18,10 +18,10 @@ services:
       - psql
       
   psql:
-    container_name: oterm.tools.rag.psql
+    container_name: otermtools.rag.psql
     image:  pgvector/pgvector:pg17
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "psql", "-h", "localhost", "-d", "oterm.rag"]
+      test: ["CMD", "pg_isready", "-U", "psql", "-h", "localhost", "-d", "otermtools.rag"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -38,5 +38,5 @@ services:
 
 networks:
   default:
-      name: oterm.tools.rag
+      name: otermtools.rag
       
