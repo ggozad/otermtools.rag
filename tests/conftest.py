@@ -1,11 +1,12 @@
 from pathlib import Path
 
 import pytest
-from datasets import Dataset, DatasetDict, load_dataset
+from datasets import Dataset, load_dataset
+from sqlmodel import Session, select
+
 from otermtools.rag.store.engine import engine
 from otermtools.rag.store.models.document import Document
 from otermtools.rag.store.models.embedding import Embedding
-from sqlmodel import Session, select
 
 
 @pytest.fixture(scope="function")
@@ -31,17 +32,9 @@ def setup_db():
 
 
 @pytest.fixture(scope="session")
-def qa_corpus() -> Dataset:
-    ds: DatasetDict = load_dataset("google-research-datasets/natural_questions", "dev")  # type: ignore
-    return ds.get("validation")  # type: ignore
-
-
-@pytest.fixture(scope="session")
-def qa_corpus_html_documents(qa_corpus) -> list[str]:
-    documents = []
-    for i in range(100):
-        documents.append(qa_corpus[i])
-    return [document["document"]["html"] for document in documents]
+def qa_corpus() -> list[dict[str, str]]:
+    ds: Dataset = load_dataset("neural-bridge/rag-dataset-12000", split="train")  # type: ignore
+    return ds.to_list()
 
 
 @pytest.fixture(scope="session")

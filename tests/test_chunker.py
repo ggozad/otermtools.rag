@@ -1,13 +1,12 @@
 import pytest
+from datasets import Dataset
+
 from otermtools.rag.chunker import Chunker
-from otermtools.rag.reader import FileReader
 
 
 @pytest.mark.asyncio
-async def test_chunker(qa_corpus_html_documents: list[str]):
-    html = qa_corpus_html_documents[0]  # type: ignore
-    text = FileReader().from_html(html)
-    chunks = await Chunker().chunk(text)
+async def test_chunker(qa_corpus: Dataset):
+    chunks = await Chunker().chunk(qa_corpus[0]["context"])
 
     # Ensure that the text is split into multiple chunks
     assert len(chunks) > 1

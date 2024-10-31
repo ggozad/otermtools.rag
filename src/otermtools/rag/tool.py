@@ -19,6 +19,6 @@ RAGTool = Tool(
 
 
 async def rag_command(query="") -> str:
-    chunks = await search(query)
+    chunks = await search(query, top_k=1)
     response = "\n".join([chunk.text for chunk in chunks])
     return response

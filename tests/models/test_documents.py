@@ -1,17 +1,18 @@
 import pytest
-from otermtools.rag.reader import FileReader
+from sqlmodel import Session
+
 from otermtools.rag.store.engine import engine
 from otermtools.rag.store.models.document import Document
-from sqlmodel import Session
 
 
 @pytest.mark.asyncio
-async def test_document_chunking(setup_db, qa_corpus_html_documents):
+async def test_document_chunking(setup_db, qa_corpus):
     with Session(engine) as session:
-        html = qa_corpus_html_documents[0]
-        text = FileReader().from_html(html)
         document = Document(
-            text=text, uri="", mimetype="text/plain", meta={"source": "rag_test"}
+            text=qa_corpus[0]["context"],
+            uri="",
+            mimetype="text/plain",
+            meta={"source": "rag_test"},
         )
 
         chunks = await document.chunk(meta={"source": "rag_test"})
