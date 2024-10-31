@@ -32,3 +32,15 @@ In addition it will monitor any files you have in the mounted `/volumes/document
 
 A bare-bones API is provided to interact with the document store at http://localhost:8000/docs#/
 
+## Using the tool
+
+Create an environment where oterm is installed and the `otermtools.rag` package is available:
+
+```bash
+uv venv
+source venv/bin/activate
+uv pip install oterm
+uv pip install otermtools.rag
+```
+
+Then, create a new chat in oterm, using the `rag` tool.

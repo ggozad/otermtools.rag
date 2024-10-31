@@ -1,7 +1,7 @@
 from pathlib import Path
 
 import pytest
-from datasets import Dataset, load_dataset
+from datasets import Dataset, load_from_disk
 from sqlmodel import Session, select
 
 from otermtools.rag.store.engine import engine
@@ -33,7 +33,8 @@ def setup_db():
 
 @pytest.fixture(scope="session")
 def qa_corpus() -> list[dict[str, str]]:
-    ds: Dataset = load_dataset("neural-bridge/rag-dataset-12000", split="train")  # type: ignore
+    ds: Dataset = load_from_disk(Path(__file__).parent / "data" / "dataset")  # type: ignore
+
     return ds.to_list()
 
 

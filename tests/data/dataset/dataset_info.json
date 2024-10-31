@@ -1,0 +1,56 @@
+{
+  "builder_name": "parquet",
+  "citation": "",
+  "config_name": "default",
+  "dataset_name": "rag-dataset-12000",
+  "dataset_size": 45472997,
+  "description": "",
+  "download_checksums": {
+    "hf://datasets/neural-bridge/rag-dataset-12000@586c0d0ddeb022fccd909c7b415cc2ca8660baa4/data/train-00000-of-00001-9df3a936e1f63191.parquet": {
+      "num_bytes": 23101821,
+      "checksum": null
+    },
+    "hf://datasets/neural-bridge/rag-dataset-12000@586c0d0ddeb022fccd909c7b415cc2ca8660baa4/data/test-00000-of-00001-af2a9f454ad1b8a3.parquet": {
+      "num_bytes": 5789757,
+      "checksum": null
+    }
+  },
+  "download_size": 28891578,
+  "features": {
+    "context": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "question": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "answer": {
+      "dtype": "string",
+      "_type": "Value"
+    }
+  },
+  "homepage": "",
+  "license": "",
+  "size_in_bytes": 74364575,
+  "splits": {
+    "train": {
+      "name": "train",
+      "num_bytes": 36385628,
+      "num_examples": 9600,
+      "dataset_name": "rag-dataset-12000"
+    },
+    "test": {
+      "name": "test",
+      "num_bytes": 9087369,
+      "num_examples": 2400,
+      "dataset_name": "rag-dataset-12000"
+    }
+  },
+  "version": {
+    "version_str": "0.0.0",
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  }
+}

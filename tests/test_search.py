@@ -9,7 +9,7 @@ from otermtools.rag.store.search import search
 @pytest.mark.asyncio
 async def test_search(setup_db, qa_corpus):
     with Session(engine) as session:
-        for doc in qa_corpus[:3]:
+        for doc in qa_corpus[:10]:
             document = Document(
                 text=doc["context"],
                 uri="",
