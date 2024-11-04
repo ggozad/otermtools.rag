@@ -12,7 +12,6 @@ def test_docx_to_text(test_files: Path):
 def test_pdf_to_text(test_files: Path):
 
     text = FileReader().read(test_files / "sample.pdf")
-    print(text)
     assert text == " \n Hello world. "
 
 
