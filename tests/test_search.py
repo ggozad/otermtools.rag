@@ -1,11 +1,9 @@
-import asyncio
-
 import pytest
 from sqlmodel import Session
 
 from otermtools.rag.store.engine import engine
 from otermtools.rag.store.models.document import Document
-from otermtools.rag.store.search import keyword_search, vector_search
+from otermtools.rag.store.search import hybrid_search, keyword_search, vector_search
 
 
 @pytest.mark.asyncio
@@ -59,7 +57,6 @@ async def test_keyword_search(setup_db, qa_corpus):
             session.commit()
             session.refresh(document)
 
-    await asyncio.sleep(1)
     search_results = await keyword_search("Berry Export", top_k=1)
     assert "strawberry" in search_results[0].text
     assert "raspberry" in search_results[0].text
@@ -72,3 +69,27 @@ async def test_keyword_search(setup_db, qa_corpus):
     search_results_text = "".join([result.text for result in search_results])
     assert "Avatar Indicator" in search_results_text
     assert "Direct Link" in search_results_text
+
+
+@pytest.mark.asyncio
+async def test_hybrid_search(setup_db, qa_corpus):
+    with Session(engine) as session:
+        for doc in qa_corpus[:10]:
+            document = Document(
+                text=doc["context"],
+                uri="",
+                mimetype="text/plain",
+                meta={"source": "rag_test"},
+            )
+
+            chunks = await document.chunk(meta={"source": "rag_test"})
+            document.chunks = chunks
+            session.add(document)
+            session.commit()
+            session.refresh(document)
+
+    search_results = await hybrid_search("Berry Export", top_k=1)
+    assert len(search_results) == 1
+    assert "strawberry" in search_results[0].text
+    assert "raspberry" in search_results[0].text
+    assert "blackberry" in search_results[0].text

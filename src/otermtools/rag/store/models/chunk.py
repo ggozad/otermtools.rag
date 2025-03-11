@@ -37,6 +37,13 @@ class Chunk(ChunkBase, table=True):
     def serialize_embedding(self, embedding: numpy.ndarray) -> list[float]:
         return embedding.tolist()
 
+    # We need to implement __hash__ and __eq__ to be able to use set() on Chunk objects
+    def __hash__(self) -> int:
+        return self.id.int
+
+    def __eq__(self, other: Any) -> bool:
+        return isinstance(other, Chunk) and self.id == other.id
+
     # If we want to index text as tsvector, we should add a ts_vector column
     # and add a __table_args__ with an Index like this:
     # __table_args__ = (

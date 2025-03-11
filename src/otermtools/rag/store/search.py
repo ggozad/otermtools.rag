@@ -44,3 +44,11 @@ async def keyword_search(query: str, top_k: int = 10) -> Sequence[Chunk]:
         ).all()
 
         return chunks
+
+
+async def hybrid_search(query: str, top_k: int = 10) -> Sequence[Chunk]:
+    k_search = await keyword_search(query, top_k)
+    v_search = await vector_search(query, top_k)
+    result = list(k_search) + list(v_search)
+    # remove duplicates
+    return list(set(result))
