@@ -1,16 +1,18 @@
-from ollama._types import Parameters, Property, Tool, ToolFunction
+from ollama._types import Tool
 
 from haiku.rag.store.search import vector_search
 
 RAGTool = Tool(
     type="function",
-    function=ToolFunction(
+    function=Tool.Function(
         name="rag",
         description="Function to search the RAG knowledge base. Returns chumks of documents that might be relevant to the query.",
-        parameters=Parameters(
+        parameters=Tool.Function.Parameters(
             type="object",
             properties={
-                "query": Property(type="string", description="The query execute.")
+                "query": Tool.Function.Parameters.Property(
+                    type="string", description="The query execute."
+                )
             },
             required=["query"],
         ),
