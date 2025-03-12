@@ -2,9 +2,9 @@ from typing import Sequence
 
 from fastapi import APIRouter
 
-from otermtools.rag.api.responses import ChunkResponse
-from otermtools.rag.store.models.chunk import Chunk
-from otermtools.rag.store.search import vector_search
+from haiku.rag.api.responses import ChunkResponse
+from haiku.rag.store.models.chunk import Chunk
+from haiku.rag.store.search import vector_search
 
 router = APIRouter(prefix="/search", tags=["search"])
 

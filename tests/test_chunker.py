@@ -1,7 +1,7 @@
 import pytest
 from datasets import Dataset
 
-from otermtools.rag.chunker import Chunker
+from haiku.rag.chunker import Chunker
 
 
 @pytest.mark.asyncio

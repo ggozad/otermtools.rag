@@ -8,10 +8,10 @@ from sqlalchemy import Column, text
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlmodel import Field, Relationship, SQLModel
 
-from otermtools.rag.config import Config
+from haiku.rag.config import Config
 
 if TYPE_CHECKING:
-    from otermtools.rag.store.models.document import Document
+    from haiku.rag.store.models.document import Document
 
 
 class ChunkBase(SQLModel):

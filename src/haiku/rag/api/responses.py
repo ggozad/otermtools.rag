@@ -1,7 +1,7 @@
 from uuid import UUID
 
-from otermtools.rag.store.models.chunk import ChunkBase
-from otermtools.rag.store.models.document import DocumentBase
+from haiku.rag.store.models.chunk import ChunkBase
+from haiku.rag.store.models.document import DocumentBase
 
 
 class DocumentResponse(DocumentBase):

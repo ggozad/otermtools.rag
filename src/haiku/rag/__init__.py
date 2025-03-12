@@ -1,4 +1,4 @@
-from otermtools.rag.tool import RAGTool, rag_command
+from haiku.rag.tool import RAGTool, rag_command
 
 tools = [
     {

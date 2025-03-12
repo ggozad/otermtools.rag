@@ -1,6 +1,6 @@
 from ollama._types import Parameters, Property, Tool, ToolFunction
 
-from otermtools.rag.store.search import vector_search
+from haiku.rag.store.search import vector_search
 
 RAGTool = Tool(
     type="function",

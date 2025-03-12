@@ -1,7 +1,7 @@
 [project]
-name = "otermtools.rag"
+name = "haiku.rag"
 version = "0.1.0"
-description = "Retrieval Augmented Generation tool for oterm/Ollama"
+description = "Retrieval Augmented Generation MCP tool"
 authors = [{ name = "Yiorgis Gozadinos", email = "ggozadinos@gmail.com" }]
 readme = "README.md"
 requires-python = ">=3.10"
@@ -33,7 +33,7 @@ dev-dependencies = [
     "ruff>=0.6.9",
 ]
 [tool.hatch.build.targets.wheel]
-packages = ["src/otermtools"]
+packages = ["src/haiku"]
 
 [tool.ruff]
 lint.per-file-ignores = { "__init__.py" = ["F401"] }

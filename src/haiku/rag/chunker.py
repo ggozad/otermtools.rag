@@ -1,7 +1,8 @@
 from typing import ClassVar
 
 import tiktoken
-from otermtools.rag.config import Config
+
+from haiku.rag.config import Config
 
 
 class Chunker(object):

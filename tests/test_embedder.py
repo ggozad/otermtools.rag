@@ -1,8 +1,8 @@
 import numpy as np
 import pytest
 
-from otermtools.rag.config import Config
-from otermtools.rag.embedder import Embedder
+from haiku.rag.config import Config
+from haiku.rag.embedder import Embedder
 
 
 @pytest.mark.asyncio

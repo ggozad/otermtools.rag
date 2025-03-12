@@ -1,5 +1,6 @@
 from fastapi.routing import APIRouter
-from otermtools.rag.api import documents, health, search
+
+from haiku.rag.api import documents, health, search
 
 router = APIRouter(prefix="/api/v1")
 router.include_router(health.router)

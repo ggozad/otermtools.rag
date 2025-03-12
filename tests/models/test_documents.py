@@ -1,8 +1,8 @@
 import pytest
 from sqlmodel import Session
 
-from otermtools.rag.store.engine import engine
-from otermtools.rag.store.models.document import Document
+from haiku.rag.store.engine import engine
+from haiku.rag.store.models.document import Document
 
 
 @pytest.mark.asyncio

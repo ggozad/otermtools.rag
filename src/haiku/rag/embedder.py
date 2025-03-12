@@ -1,7 +1,8 @@
 import functools
 
 from ollama import AsyncClient
-from otermtools.rag.config import Config
+
+from haiku.rag.config import Config
 
 
 class Embedder(object):

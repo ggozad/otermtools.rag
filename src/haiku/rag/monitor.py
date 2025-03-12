@@ -3,12 +3,13 @@ from mimetypes import guess_type
 from pathlib import Path
 from typing import Optional, Set
 
-from otermtools.rag.logging import logger
-from otermtools.rag.reader import FileReader
-from otermtools.rag.store.engine import engine
-from otermtools.rag.store.models.document import Document
 from sqlmodel import Session, select
 from watchfiles import Change, DefaultFilter, awatch
+
+from haiku.rag.logging import logger
+from haiku.rag.reader import FileReader
+from haiku.rag.store.engine import engine
+from haiku.rag.store.models.document import Document
 
 
 class FileFilter(DefaultFilter):

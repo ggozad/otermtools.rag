@@ -9,9 +9,9 @@ load_dotenv()
 class AppConfig(BaseModel):
     ENV: str = "development"
 
-    COLLECTION_NAME: str = "oterm"
+    COLLECTION_NAME: str = "haiku"
 
-    POSTGRES_DB: str = "otermtools.rag"
+    POSTGRES_DB: str = "haiku.rag"
     POSTGRES_USER: str
     POSTGRES_PASSWORD: str
     POSTGRES_HOST: str

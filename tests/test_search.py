@@ -1,9 +1,9 @@
 import pytest
 from sqlmodel import Session
 
-from otermtools.rag.store.engine import engine
-from otermtools.rag.store.models.document import Document
-from otermtools.rag.store.search import hybrid_search, keyword_search, vector_search
+from haiku.rag.store.engine import engine
+from haiku.rag.store.models.document import Document
+from haiku.rag.store.search import hybrid_search, keyword_search, vector_search
 
 
 @pytest.mark.asyncio

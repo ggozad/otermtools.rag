@@ -4,9 +4,9 @@ import pytest
 from datasets import Dataset, load_from_disk
 from sqlmodel import Session, select
 
-from otermtools.rag.store.engine import engine
-from otermtools.rag.store.models.document import Document
-from otermtools.rag.store.models.embedding import Embedding
+from haiku.rag.store.engine import engine
+from haiku.rag.store.models.document import Document
+from haiku.rag.store.models.embedding import Embedding
 
 
 @pytest.fixture(scope="function")

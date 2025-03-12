@@ -1,8 +1,8 @@
-from otermtools.rag.config import Config
-from otermtools.rag.store.engine import engine
-from otermtools.rag.store.models.embedding import Embedding
 from sqlmodel import Session, select
 
+from haiku.rag.config import Config
+from haiku.rag.store.engine import engine
+from haiku.rag.store.models.embedding import Embedding
 from tests.models.utils import create_random_vector
 
 

@@ -3,11 +3,12 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from otermtools.rag.api import router as api_router
-from otermtools.rag.config import Config
-from otermtools.rag.monitor import FileWatcher
-from otermtools.rag.store.engine import engine
 from sqlmodel import SQLModel
+
+from haiku.rag.api import router as api_router
+from haiku.rag.config import Config
+from haiku.rag.monitor import FileWatcher
+from haiku.rag.store.engine import engine
 
 
 @asynccontextmanager

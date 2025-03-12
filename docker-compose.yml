@@ -1,7 +1,7 @@
 services:
 
-  otermtools.rag:
-    container_name: otermtools.rag
+  haiku.rag:
+    container_name: haiku.rag
     build:
       dockerfile: docker/Dockerfile
     ports:
@@ -18,10 +18,10 @@ services:
       - psql
       
   psql:
-    container_name: otermtools.rag.psql
+    container_name: haiku.rag.psql
     image:  pgvector/pgvector:pg17
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "psql", "-h", "localhost", "-d", "otermtools.rag"]
+      test: ["CMD", "pg_isready", "-U", "psql", "-h", "localhost", "-d", "haiku.rag"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -38,5 +38,5 @@ services:
 
 networks:
   default:
-      name: otermtools.rag
+      name: haiku.rag
       

@@ -2,10 +2,10 @@ import pytest
 from ollama import Client, Message
 from sqlmodel import Session
 
-from otermtools.rag.config import Config
-from otermtools.rag.store.engine import engine
-from otermtools.rag.store.models.document import Document
-from otermtools.rag.tool import RAGTool, rag_command
+from haiku.rag.config import Config
+from haiku.rag.store.engine import engine
+from haiku.rag.store.models.document import Document
+from haiku.rag.tool import RAGTool, rag_command
 
 
 @pytest.mark.asyncio

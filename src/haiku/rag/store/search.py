@@ -2,9 +2,9 @@ from typing import Sequence
 
 from sqlmodel import Session, select
 
-from otermtools.rag.embedder import Embedder
-from otermtools.rag.store.engine import engine
-from otermtools.rag.store.models.chunk import Chunk
+from haiku.rag.embedder import Embedder
+from haiku.rag.store.engine import engine
+from haiku.rag.store.models.chunk import Chunk
 
 
 async def vector_search(query: str, top_k: int = 10) -> Sequence[Chunk]:
