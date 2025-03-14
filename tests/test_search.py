@@ -3,7 +3,7 @@ from sqlmodel import Session
 
 from haiku.rag.store.engine import engine
 from haiku.rag.store.models.document import Document
-from haiku.rag.store.search import hybrid_search, keyword_search, vector_search
+from haiku.rag.store.search import keyword_search, search, vector_search
 
 
 @pytest.mark.asyncio
@@ -88,8 +88,8 @@ async def test_hybrid_search(setup_db, qa_corpus):
             session.commit()
             session.refresh(document)
 
-    search_results = await hybrid_search("Berry Export", top_k=1)
+    search_results = await search("Berry Export", top_k=1)
     assert len(search_results) == 1
-    assert "strawberry" in search_results[0].text
-    assert "raspberry" in search_results[0].text
-    assert "blackberry" in search_results[0].text
+    assert "strawberry" in search_results[0][0].text
+    assert "raspberry" in search_results[0][0].text
+    assert "blackberry" in search_results[0][0].text

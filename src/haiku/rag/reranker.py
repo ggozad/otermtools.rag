@@ -13,6 +13,4 @@ def rerank(
     threshold: float = 0.0,
 ) -> list[RankResult]:
     ranked = model.rank(query, documents, top_k=top_k)
-    if threshold:
-        ranked = [r for r in ranked if r.score > threshold]
-    return ranked
+    return [r for r in ranked if r.score > threshold]
