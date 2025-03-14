@@ -11,6 +11,8 @@ RUN \
     gettext poppler-utils && \
     rm -r /var/cache/apt /var/lib/apt
 
+RUN mkdir /cache
+ENV HF_HOME="/cache/huggingface/datasets"
 
 # Setup uv
 ADD https://astral.sh/uv/install.sh /uv-installer.sh
