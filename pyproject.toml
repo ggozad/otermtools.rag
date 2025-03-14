@@ -7,6 +7,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "fastapi[standard]>=0.115.11",
+    "mxbai-rerank>=0.1.1",
     "ollama>=0.4.7",
     "pgvector>=0.3.6",
     "psycopg2>=2.9.10",
@@ -19,7 +20,7 @@ dependencies = [
     "trafilatura>=2.0.0",
     "watchfiles>=1.0.4",
 ]
-license = { text = "MIT"}
+license = { text = "MIT" }
 
 [build-system]
 requires = ["hatchling"]
@@ -55,3 +56,6 @@ exclude = [
 [tool.pytest.ini_options]
 asyncio_default_fixture_loop_scope = "session"
 asyncio_mode = "auto"
+
+# pyproject.toml
+filterwarnings = ["error", "ignore::UserWarning", "ignore::DeprecationWarning"]

@@ -22,6 +22,7 @@ class AppConfig(BaseModel):
     LLM_MODEL: str = "llama3.2"
     EMBEDDING_MODEL: str = "mxbai-embed-large"
     EMBEDDING_VECTOR_DIM: int = 1024
+    RERANKING_MODEL: str = "mixedbread-ai/mxbai-rerank-base-v2"
     CHUNK_SIZE: int = 256
     CHUNK_OVERLAP: int = 32
 
